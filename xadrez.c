@@ -7,50 +7,81 @@ const int MOVIMENTOS_RAINHA = 8;
 const int MOVIMENTOS_CAVALO_VERTICAL = 2 ; // Duas casas para baixo
 const int MOVIMENTOS_CAVALO_HORIZONTAL = 1 ; // Uma casa para esquerda
 
+// -------------------- Funções Recursivas --------------------
+
+// Torre: move para a direita
+void movimentaTorre(int movimentosRestantes) {
+    if (movimentosRestantes == 0) {
+        return;
+    }
+    printf("Torre moveu para a direita\n");
+    movimentaTorre(movimentosRestantes - 1);
+}
+
+// Rainha: move para a esquerda
+void movimentaRainha(int movimentosRestantes) {
+    if (movimentosRestantes == 0) {
+        return;
+    }
+    printf("Rainha moveu para a esquerda\n");
+    movimentaRainha(movimentosRestantes - 1);
+}
+
+// Bispo: movimento diagonal usando loops aninhados
+void movimentaBispo(int movimentosRestantes) {
+    if (movimentosRestantes == 0) {
+        printf("...Bispo chegou ao destino.\n\n");
+        return;
+    }
+    // Loop aninhado para a movimentação diagonal
+    for (int i = 0; i < 1; i++) {
+        for (int j = 0; j < 1; j++) {
+            printf("Cima\n");
+            printf("Direita\n");
+        }
+    }
+    movimentaBispo(movimentosRestantes - 1);
+}
+
+// Cavalo: movimento em L usando loops múltiplos e condições
+void movimentaCavalo() {
+    printf("=== Movimentando o Cavalo (movimento em L) ===\n");
+    int vertical = 0;
+    int horizontal = 0;
+
+    while (vertical < MOVIMENTOS_CAVALO_VERTICAL) {
+        vertical++;
+        printf("Baixo\n");
+
+        horizontal = 0;
+        while (horizontal < MOVIMENTOS_CAVALO_HORIZONTAL) {
+            horizontal++;
+            // Exemplo de uso de continue/break
+            if (vertical > 2) continue;
+            if (horizontal > 1) break;
+            printf("Esquerda\n");
+        }
+    }
+    printf("...Cavalo chegou ao destino.\n\n");
+}
+
+// -------------------- Função Principal --------------------
 int main() {
     printf("--- Desafio Xadrez ---\n\n");
 
-    // Movimentação da Torre (5 casas para a direita) usando 'for'
+// Movimentações
     printf("=== Movimentando a Torre (%d casas para a direita) ===\n", MOVIMENTOS_TORRE);
-    for (int i = 0; i < MOVIMENTOS_TORRE; i++) {
-        printf("Direita\n");
-    }
-    printf("...Torre chegou ao destino.\n\n");
+    movimentaTorre(MOVIMENTOS_TORRE);
 
-    // Movimentação da Rainha (8 casas para a esquerda) usando 'while'
     printf("=== Movimentando a Rainha (%d casas para a esquerda) ===\n", MOVIMENTOS_RAINHA);
-    int contador_rainha = 0;
-    while (contador_rainha < MOVIMENTOS_RAINHA) {
-        printf("Esquerda\n");
-        contador_rainha++; 
-    }
-    printf("...Rainha chegou ao destino.\n\n");
+    movimentaRainha(MOVIMENTOS_RAINHA);
 
-    // Movimentação do Bispo (5 casas na diagonal superior direita) usando 'do-while'
     printf("=== Movimentando o Bispo (%d casas diagonal sup. direita) ===\n", MOVIMENTOS_BISPO);
-    int contador_bispo = 0;
-    do {
-        printf("Cima\n");
-        printf("Direita\n");
-        contador_bispo++;
-    } while (contador_bispo < MOVIMENTOS_BISPO);
-    printf("...Bispo chegou ao destino.\n\n");
+    movimentaBispo(MOVIMENTOS_BISPO);
 
-    // Movimentação do Cavalo (movimento em L) usando 'for'
-    printf("=== Movimentando o Cavalo (movimento em L) ===\n");
-    for (int i = 0; i < MOVIMENTOS_CAVALO_VERTICAL; i ++) {
-        printf("Baixo\n");
+    movimentaCavalo();
 
-    for (int j = 0; j < MOVIMENTOS_CAVALO_HORIZONTAL; j ++) {
-        printf("Esquerda\n");
-
-}
-}
-
-    printf("...Cavalo chegou ao destino.\n\n");
-
-
-    
+ 
     printf("--- Simulações concluídas! ---\n");
     
     return 0;
