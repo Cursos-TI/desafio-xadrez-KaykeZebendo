@@ -4,6 +4,8 @@
 const int MOVIMENTOS_BISPO = 5;
 const int MOVIMENTOS_TORRE = 5;
 const int MOVIMENTOS_RAINHA = 8;
+const int MOVIMENTOS_CAVALO_VERTICAL = 2 ; // Duas casas para baixo
+const int MOVIMENTOS_CAVALO_HORIZONTAL = 1 ; // Uma casa para esquerda
 
 int main() {
     printf("--- Desafio Xadrez ---\n\n");
@@ -34,8 +36,21 @@ int main() {
     } while (contador_bispo < MOVIMENTOS_BISPO);
     printf("...Bispo chegou ao destino.\n\n");
 
+    // Movimentação do Cavalo (movimento em L) usando 'for'
+    printf("=== Movimentando o Cavalo (movimento em L) ===\n");
+    for (int i = 0; i < MOVIMENTOS_CAVALO_VERTICAL; i ++) {
+        printf("Baixo\n");
+
+    for (int j = 0; j < MOVIMENTOS_CAVALO_HORIZONTAL; j ++) {
+        printf("Esquerda\n");
+
+}
+}
+
+    printf("...Cavalo chegou ao destino.\n\n");
 
 
+    
     printf("--- Simulações concluídas! ---\n");
     
     return 0;
